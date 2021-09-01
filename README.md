@@ -65,3 +65,18 @@ You probably will want to increase the disk size and the partition size if you w
     - `pacman -S qemu-guest-agent`
     - `systemctl start qemu-guest-agent`
     - `systemctl enable qemu-guest-agent`
+
+## Use this VM as a cloud-init image for terraform
+The great thing about this setup is that you do not *need* to convert this VM into a proxmox template. You can clone this VM directly and keep on updating this VM and all clones will have the same updated image!
+
+To use this VM as a cloud-init template follow these steps:
+- Navigate to the 'Hardware' section of your template VM
+- Click on Add > CloudInit Drive
+- Now navigate to 'Cloud-Init' section of your template VM
+- Edit the config here to have your newly created user **OR** use the user already present in the cloud image. User already present in the image is called **arch**
+- Don't add Password as you can login using SSH keys and use sudo without password. If you do set password here though, you might need to reset it after cloning finishes.
+- Add your SSH public keys and configure IP Config to use IPv4 and DHCP
+- Click on 'Regenerate Image'
+
+Your image is now ready! 
+Check out this [repo](https://github.com/Naman1997/proxmox-terraform-template-k8s) to use a terraform script for creating VMs for a k8s cluster using this image!
