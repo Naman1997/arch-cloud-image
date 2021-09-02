@@ -80,3 +80,5 @@ To use this VM as a cloud-init template follow these steps:
 
 Your image is now ready! 
 Check out this [repo](https://github.com/Naman1997/proxmox-terraform-template-k8s) to use a terraform script for creating VMs for a k8s cluster using this image!
+
+**Note:** If you follow the repo mentioned above, please make sure to also install [yay](https://github.com/Jguer/yay)
