@@ -49,10 +49,12 @@ You probably will want to increase the disk size and the partition size if you w
     - `pacman-key --populate`
     - Retry installing vim
 - visudo
-- Look for the wheel group and uncomment the line. It should look like:
+- Look for the wheel group and uncomment one of these lines. It should look like:
 ```
-## Uncomment to allow members of group wheel to execute any command
+## Uncomment to allow members of group wheel to use sudo with password
 %wheel ALL=(ALL) ALL
+## Uncomment to allow members of group wheel to use sudo without password
+%wheel ALL=(ALL) NOPASSWD:ALL
 ```
 - Test your user
   - `su - example_user`
