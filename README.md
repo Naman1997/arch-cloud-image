@@ -24,7 +24,7 @@ You probably will want to increase the disk size and the partition size if you w
 
 ## Configure the template VM
 
-- On your proxmox node run: `qm importdisk <VM_ID> <IMAGE_NAME>`
+- On your proxmox node run: `qm importdisk <VM_ID> <IMAGE_NAME> local-lvm`
 - Go to the proxmox web console
 - Go to the 'Hardware' section of your VM
 - You will find an 'Unused Disk'on that VM. **Do not delete it.**
