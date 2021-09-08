@@ -1,5 +1,8 @@
 # arch-cloud-image
 
+## Video Setup
+Check out this [video](https://youtu.be/7FkfbxdQyt8) and follow along!
+
 ## How to create a cloud image for arch?
 
 There are 2 ways to create a cloud image for arch
