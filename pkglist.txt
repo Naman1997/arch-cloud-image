@@ -9,3 +9,4 @@ qemu-guest-agent
 python
 base-devel
 iptables-nft
+docker

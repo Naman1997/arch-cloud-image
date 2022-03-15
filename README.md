@@ -65,6 +65,7 @@ You probably will want to increase the disk size and the partition size if you w
 - Install all the packages that you want in your example_user. Below are the packages that I install for my setup:
   - `wget https://raw.githubusercontent.com/Naman1997/arch-cloud-image/main/pkglist.txt`
   - `pacman -S --needed - < pkglist.txt`
+- You may need to reboot the VM once to start docker.service
 - [Optional] Install my [zsh theme](https://github.com/Naman1997/Terminal-themes/tree/main/zsh)
 - [Optional] Setup qemu-guest agent
     - `pacman -S qemu-guest-agent`
