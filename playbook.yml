@@ -1,12 +1,19 @@
 ---
+- name: 'Sync and refresh existing installation'
+  hosts: all
+  become: true
+  tasks:
+    - name: Sync
+      shell: "pacman -Sy"
+    - name: Update keyring
+      shell: "pacman -S archlinux-keyring --noconfirm"
+    - name: Update all packages
+      shell: "pacman -Syu --noconfirm"
+      
 - name: 'Install packages'
   hosts: all
   become: true
   tasks:
-    - name: Update archlinux-keyring
-      shell: "rm -f /var/lib/pacman/db.lck"
-    - name: Sync and refresh package database
-      shell: "pacman -Sy"
     - name: Install iptables-nft
       shell: "yes | pacman -S --needed iptables-nft"
     - name: Install packages from package list
@@ -46,8 +53,7 @@
         git clone https://github.com/Naman1997/Terminal-themes.git
         cp Terminal-themes/zsh/.z* /home/arch/
         rm -rf Terminal-themes/
-    # - name: Switch default terminal to be zsh
-    #   expect:
-    #     command: "chsh -s /usr/bin/zsh"
-    #     responses:
-    #       (?i)password: "arch"
+    - name: Set login shell as zsh
+      ansible.builtin.command: usermod --shell /bin/zsh arch
+      become: true
+      changed_when: false
