@@ -1,22 +1,30 @@
+variable "username" {
+  type = string
+}
+
+variable "version" {
+  type = string
+}
+
 source "qemu" "archlinux" {
   accelerator           = "kvm"
   disk_image            = true
   disk_interface        = "virtio"
   format                = "qcow2"
   http_directory        = "./http"
-  iso_checksum          = "file:https://mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-20220401.51758.qcow2.SHA256"
-  iso_url               = "https://mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-20220401.51758.qcow2"
+  iso_checksum          = "file:https://mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-${var.version}.qcow2.SHA256"
+  iso_url               = "https://mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-${var.version}.qcow2"
   net_device            = "virtio-net"
   shutdown_command      = "sudo systemctl poweroff"
   ssh_password          = "archPassword"
   ssh_timeout           = "20m"
-  ssh_username          = "arch"
+  ssh_username          = "${var.username}"
   vm_name               = "golden-arch.qcow2"
-  cd_files              = ["./meta-data", "./user-data"]
+  cd_files              = ["cloud-init/meta-data", "cloud-init/user-data"]
   cd_label              = "cidata"
   boot_wait             = "30s"
   boot_command          = [
-      "arch<enter>arch<enter>",
+      "${var.username}<enter>arch<enter>",
       "arch<enter>archPassword<enter>archPassword<enter><wait>",
       "curl -sfSLO http://{{ .HTTPIP }}:{{ .HTTPPort }}/pkglist.txt<enter><wait>"
     ]
@@ -26,11 +34,15 @@ build {
   sources = ["source.qemu.archlinux"]
 
   provisioner "shell" {
-    inline = ["sudo pacman --sync --noconfirm --needed ansible"]
+    inline = ["sudo pacman -S ansible --noconfirm"]
   }
 
   provisioner "ansible-local" {
     playbook_file = "./playbook.yml"
-    extra_arguments = ["-v"]
+    extra_arguments = ["--extra-vars", "'username=${var.username}'"]
+  }
+
+  provisioner "shell" {
+    inline = ["sudo usermod -p '!' ${var.username}"]
   }
 }

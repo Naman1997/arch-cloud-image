@@ -19,8 +19,8 @@
     - name: Install packages from package list
       become: false
       shell: |
-        yes | sudo pacman -S --needed - < /home/arch/pkglist.txt --noconfirm
-        rm /home/arch/pkglist.txt
+        yes | sudo pacman -S --needed - < /home/{{ username }}/pkglist.txt --noconfirm
+        rm /home/{{ username }}/pkglist.txt
     - name: Install yay
       become: false
       shell: |
@@ -51,9 +51,9 @@
     - name: Copy theme settings
       shell: |
         git clone https://github.com/Naman1997/Terminal-themes.git
-        cp Terminal-themes/zsh/.z* /home/arch/
+        cp Terminal-themes/zsh/.z* /home/{{ username }}/
         rm -rf Terminal-themes/
     - name: Set login shell as zsh
-      ansible.builtin.command: usermod --shell /bin/zsh arch
+      ansible.builtin.command: usermod --shell /bin/zsh {{ username }}
       become: true
       changed_when: false
