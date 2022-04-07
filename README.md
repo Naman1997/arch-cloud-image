@@ -1,5 +1,8 @@
 # arch-cloud-image
 
+[![Ansible](https://github.com/Naman1997/arch-cloud-image/actions/workflows/ansible.yml/badge.svg)](https://github.com/Naman1997/arch-cloud-image/actions/workflows/ansible.yml)
+[![Packer](https://github.com/Naman1997/arch-cloud-image/actions/workflows/packer.yml/badge.svg)](https://github.com/Naman1997/arch-cloud-image/actions/workflows/packer.yml)
+
 ## Objective of this repo
 To create a qcow2 template that is modified to contain certain programs. This is sometimes also referred to as a [golden image](https://opensource.com/article/19/7/what-golden-image). This image also contains my [zsh config](https://github.com/Naman1997/Terminal-themes/tree/main/zsh) for a specified user. This means that a user is created and a list of programs are installed on top of the latest [official cloud image](https://wiki.archlinux.org/title/Arch_Linux_on_a_VPS#Official_Arch_Linux_cloud_image) provided by the arch linux community.
 
