@@ -1,0 +1,59 @@
+---
+- name: 'Sync and refresh existing installation'
+  hosts: all
+  become: true
+  tasks:
+    - name: Sync
+      shell: "pacman -Sy"
+    - name: Update keyring
+      shell: "pacman -S archlinux-keyring --noconfirm"
+    - name: Update all packages
+      shell: "pacman -Syu --noconfirm"
+      
+- name: 'Install packages'
+  hosts: all
+  become: true
+  tasks:
+    - name: Install iptables-nft
+      shell: "yes | pacman -S --needed iptables-nft"
+    - name: Install packages from package list
+      become: false
+      shell: |
+        yes | sudo pacman -S --needed - < /home/{{ username }}/pkglist.txt --noconfirm
+        rm /home/{{ username }}/pkglist.txt
+    - name: Install yay
+      become: false
+      shell: |
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        yes | makepkg -si
+        rm -rf yay
+
+- name: 'Start and enable services'
+  hosts: all
+  become: true
+  tasks:
+    - name: Enable Qemu guest agent
+      shell: "systemctl enable --now qemu-guest-agent"
+    - name: Enable Docker
+      shell: "systemctl enable --now docker"
+
+- name: 'Install zsh along with theme'
+  hosts: all
+  become: false
+  tasks:
+    - name: Install theme dependencies
+      shell: |
+        sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    - name: Copy theme settings
+      shell: |
+        git clone https://github.com/Naman1997/Terminal-themes.git
+        cp Terminal-themes/zsh/.z* /home/{{ username }}/
+        rm -rf Terminal-themes/
+    - name: Set login shell as zsh
+      ansible.builtin.command: usermod --shell /bin/zsh {{ username }}
+      become: true
+      changed_when: false
