@@ -1,0 +1,23 @@
+name: Ansible
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install ansible
+        run: |
+          sudo apt install software-properties-common
+          sudo add-apt-repository --yes --update ppa:ansible/ansible
+          sudo apt install ansible
+      
+      # Check syntax for all ansible playbooks
+      - name: Validate all playbooks
+        run: ansible-playbook playbook.yml --syntax-check
