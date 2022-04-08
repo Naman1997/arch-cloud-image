@@ -42,6 +42,8 @@
   hosts: all
   become: false
   tasks:
+    - name: Install zsh
+      shell: "sudo pacman -S --needed zsh"
     - name: Install theme dependencies
       shell: |
         sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

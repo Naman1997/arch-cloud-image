@@ -34,7 +34,7 @@ build {
   sources = ["source.qemu.archlinux"]
 
   provisioner "shell" {
-    inline = ["sudo pacman -S ansible --noconfirm"]
+    inline = ["sudo pacman -Sy ansible --noconfirm"]
   }
 
   provisioner "ansible-local" {
