@@ -28,6 +28,8 @@
         cd yay
         yes | makepkg -si
         rm -rf yay
+    - name: Install qemu-guest-agent
+      shell: "sudo pacman -S --noconfirm qemu-guest-agent"
 
 - name: 'Start and enable services'
   hosts: all
