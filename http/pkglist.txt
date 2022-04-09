@@ -5,9 +5,7 @@ openssh
 figlet
 htop
 net-tools
-qemu-guest-agent
 python
 base-devel
 docker
 wget
-zsh

@@ -28,6 +28,8 @@
         cd yay
         yes | makepkg -si
         rm -rf yay
+    - name: Install qemu-guest-agent
+      shell: "sudo pacman -S --noconfirm qemu-guest-agent"
 
 - name: 'Start and enable services'
   hosts: all
@@ -42,6 +44,8 @@
   hosts: all
   become: false
   tasks:
+    - name: Install zsh
+      shell: "sudo pacman -S --noconfirm zsh"
     - name: Install theme dependencies
       shell: |
         sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
