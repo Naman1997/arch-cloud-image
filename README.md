@@ -10,9 +10,6 @@ To create a qcow2 template that is modified to contain certain programs. This is
 ## Prerequisites
 - [packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli)
 
-## Video
-[Follow along](https://www.youtube.com/watch?v=FjLkzwdgUiM&t=216s) as I create the image and use it to deploy a virtual machine on proxmox!
-
 ## Create the golden image
 
 The following commands will create a qcow2 image at 'output-archlinux/golden-arch.qcow2'
@@ -45,3 +42,6 @@ chmod +x scripts/proxmox.sh
 ```
 
 To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER
+
+## Video
+[Follow along](https://www.youtube.com/watch?v=FjLkzwdgUiM&t=216s) as I create the image and use it to deploy a virtual machine on proxmox!
