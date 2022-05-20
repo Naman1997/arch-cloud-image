@@ -9,6 +9,7 @@ To create a qcow2 template that is modified to contain certain programs. This is
 
 ## Prerequisites
 - [packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli)
+- [jq](https://stedolan.github.io/jq/)
 
 ## Create the golden image
 
