@@ -36,9 +36,9 @@
   become: true
   tasks:
     - name: Enable Qemu guest agent
-      shell: "systemctl enable --now qemu-guest-agent"
+      shell: "systemctl enable qemu-guest-agent"
     - name: Enable Docker
-      shell: "systemctl enable --now docker"
+      shell: "systemctl enable docker"
 
 - name: 'Install zsh along with theme'
   hosts: all
