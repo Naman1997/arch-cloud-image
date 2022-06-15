@@ -2,18 +2,14 @@ variable "username" {
   type = string
 }
 
-variable "version" {
-  type = string
-}
-
 source "qemu" "archlinux" {
   accelerator           = "kvm"
   disk_image            = true
   disk_interface        = "virtio"
   format                = "qcow2"
   http_directory        = "./http"
-  iso_checksum          = "file:https://geo.mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-${var.version}.qcow2.SHA256"
-  iso_url               = "https://geo.mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg-${var.version}.qcow2"
+  iso_checksum          = "file:https://geo.mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg.qcow2.SHA256"
+  iso_url               = "https://geo.mirror.pkgbuild.com/images/latest/Arch-Linux-x86_64-cloudimg.qcow2"
   net_device            = "virtio-net"
   shutdown_command      = "sudo systemctl poweroff"
   ssh_password          = "archPassword"
