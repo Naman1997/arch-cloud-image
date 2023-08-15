@@ -11,38 +11,39 @@ To create a qcow2 template that is modified to contain certain programs. This is
 - [packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli)
 - [jq](https://stedolan.github.io/jq/)
 
-## Create the golden image
+## Usage
 
-The following commands will create a qcow2 image at 'output-archlinux/golden-arch.qcow2'
+The following command will create a qcow2 image at 'output-archlinux/golden-arch.qcow2' and create a template with VM ID 9000.
+This command assumes that you'll be using the same public key to ssh into the proxmox node as well as the VMs created by the template to keep things simple. 
 
-```
-git clone https://github.com/Naman1997/arch-cloud-image.git
-cd arch-cloud-image/
-chmod +x scripts/create.sh
-# Update CLOUD_USER here
-./scripts/create.sh CLOUD_USER
-```
-
-```
-# EXAMPLE
-# ./scripts/create.sh arch
-```
-
-## Create a proxmox template using the created image [Optional]
-The following commands will create a template with VM ID 9000.
 WARNING: If a VM/Template has ID 9000, then these commands will destroy and replace it with the golden image template for proxmox.
-```
-chmod +x scripts/proxmox.sh
-# Update variables here
-./scripts/proxmox.sh PROXMOX_USERNAME PROXMOX_IP CLOUD_USER PATH_TO_PUB_KEY
-```
 
 ```
-# EXAMPLE
-# ./scripts/proxmox.sh root 192.168.0.106 arch ~/.ssh/id_rsa.pub
+make -s template \
+    CLOUD_USER=<your_cloud_user> \
+    PROXMOX_USERNAME=<your_proxmox_username> \
+    PROXMOX_IP=<your_proxmox_ip> \
+    PATH_TO_PUB_KEY=<your_path_to_pub_key>
+```
+```
+#Example
+make -s template \
+    CLOUD_USER=arch \
+    PROXMOX_USERNAME=root \
+    PROXMOX_IP=192.168.0.100 \
+    PATH_TO_PUB_KEY=~/.ssh/id_rsa.pub
 ```
 
-To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER
+The following command will delete the qcow2 file and reset the user-data file used to generate the template.
+
+```
+make clean
+```
+To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER.
+
+## Older way of doing the same thing
+
+You can find the shell scripts and their usage [here](SCRIPTS.md).
 
 ## Video
 [Follow along](https://www.youtube.com/watch?v=FjLkzwdgUiM&t=216s) as I create the image and use it to deploy a virtual machine on proxmox!
