@@ -13,7 +13,9 @@ To create a qcow2 template that is modified to contain certain programs. This is
 
 ## Usage
 
-The following command will create a qcow2 image at 'output-archlinux/golden-arch.qcow2' and create a template with VM ID 9000. WARNING: If a VM/Template has ID 9000, then these commands will destroy and replace it with the golden image template for proxmox.
+The following command will create a qcow2 image at 'output-archlinux/golden-arch.qcow2' and create a template with VM ID 9000. 
+
+WARNING: If a VM/Template has ID 9000, then these commands will destroy and replace it with the golden image template for proxmox.
 
 ```
 make -s template \
@@ -31,7 +33,7 @@ make -s template \
     PATH_TO_PUB_KEY=~/.ssh/id_rsa.pub
 ```
 
-The following command will delete the qcow2 file and reset the user-data.
+The following command will delete the qcow2 file and reset the user-data file used to generate the template.
 
 ```
 make clean
