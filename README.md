@@ -1,7 +1,6 @@
 # arch-cloud-image
 
-[![Ansible](https://github.com/Naman1997/arch-cloud-image/actions/workflows/ansible.yml/badge.svg)](https://github.com/Naman1997/arch-cloud-image/actions/workflows/ansible.yml)
-[![Packer](https://github.com/Naman1997/arch-cloud-image/actions/workflows/packer.yml/badge.svg)](https://github.com/Naman1997/arch-cloud-image/actions/workflows/packer.yml)
+[![Validatate configs](https://github.com/Naman1997/arch-cloud-image/actions/workflows/validate.yml/badge.svg)](https://github.com/Naman1997/arch-cloud-image/actions/workflows/validate.yml)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naman1997/arch-cloud-image/blob/main/LICENSE)
 
 ## Objective of this repo
