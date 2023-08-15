@@ -13,7 +13,8 @@ To create a qcow2 template that is modified to contain certain programs. This is
 
 ## Usage
 
-The following command will create a qcow2 image at 'output-archlinux/golden-arch.qcow2' and create a template with VM ID 9000. 
+The following command will create a qcow2 image at 'output-archlinux/golden-arch.qcow2' and create a template with VM ID 9000.
+This command assumes that you'll be using the same public key to ssh into the proxmox node as well as the VMs created by the template to keep things simple. 
 
 WARNING: If a VM/Template has ID 9000, then these commands will destroy and replace it with the golden image template for proxmox.
 
