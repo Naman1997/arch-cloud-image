@@ -18,7 +18,6 @@ You can either create the image locally first with:
 ```
 make -s image CLOUD_USER=<your_cloud_user>
 ```
-
 ```
 #Example
 make -s image CLOUD_USER=arch
@@ -33,7 +32,6 @@ make -s template \
     PROXMOX_IP=<your_proxmox_ip> \
     PATH_TO_PUB_KEY=<your_path_to_pub_key>
 ```
-
 ```
 #Example
 make -s template \
@@ -43,9 +41,9 @@ make -s template \
     PATH_TO_PUB_KEY=~/.ssh/id_rsa.pub
 ```
 
-You can find the older shell scripts and there usage [here](SCRIPTS.md)
+You can find the older shell scripts and their usage [here](SCRIPTS.md).
 
-To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER
+To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER.
 
 ## Video
 [Follow along](https://www.youtube.com/watch?v=FjLkzwdgUiM&t=216s) as I create the image and use it to deploy a virtual machine on proxmox!
