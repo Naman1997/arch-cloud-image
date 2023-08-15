@@ -11,36 +11,39 @@ To create a qcow2 template that is modified to contain certain programs. This is
 - [packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli)
 - [jq](https://stedolan.github.io/jq/)
 
-## Create the golden image
+## Usage
 
-The following commands will create a qcow2 image at 'output-archlinux/golden-arch.qcow2'
+You can either create the image locally first with:
 
 ```
-git clone https://github.com/Naman1997/arch-cloud-image.git
-cd arch-cloud-image/
-chmod +x scripts/create.sh
-# Update CLOUD_USER here
-./scripts/create.sh CLOUD_USER
+make -s image CLOUD_USER=<your_cloud_user>
 ```
 
 ```
-# EXAMPLE
-# ./scripts/create.sh arch
+#Example
+make -s image CLOUD_USER=arch
 ```
 
-## Create a proxmox template using the created image [Optional]
-The following commands will create a template with VM ID 9000.
-WARNING: If a VM/Template has ID 9000, then these commands will destroy and replace it with the golden image template for proxmox.
+Or you can make the image and create a template using 1 command with:
+
 ```
-chmod +x scripts/proxmox.sh
-# Update variables here
-./scripts/proxmox.sh PROXMOX_USERNAME PROXMOX_IP CLOUD_USER PATH_TO_PUB_KEY
+make -s template \
+    CLOUD_USER=<your_cloud_user> \
+    PROXMOX_USERNAME=<your_proxmox_username> \
+    PROXMOX_IP=<your_proxmox_ip> \
+    PATH_TO_PUB_KEY=<your_path_to_pub_key>
 ```
 
 ```
-# EXAMPLE
-# ./scripts/proxmox.sh root 192.168.0.106 arch ~/.ssh/id_rsa.pub
+#Example
+make -s template \
+    CLOUD_USER=arch \
+    PROXMOX_USERNAME=root \
+    PROXMOX_IP=192.168.0.100 \
+    PATH_TO_PUB_KEY=~/.ssh/id_rsa.pub
 ```
+
+You can find the older shell scripts and there usage [here](SCRIPTS.md)
 
 To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER
 

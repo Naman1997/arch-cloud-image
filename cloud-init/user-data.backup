@@ -1,10 +1,10 @@
 #cloud-config
-hostname: naman
+hostname: arch
 manage_etc_hosts: true
-user: naman
+user: arch
 chpasswd:
   list:
-    - naman:arch
+    - arch:arch
 users:
   - default
 package_upgrade: false
