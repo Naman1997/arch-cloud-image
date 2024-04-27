@@ -33,12 +33,15 @@ make -s template \
     PATH_TO_PUB_KEY=~/.ssh/id_rsa.pub
 ```
 
+To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER.
+
+## Cleanup
+
 The following command will delete the qcow2 file and reset the user-data file used to generate the template.
 
 ```
 make clean
 ```
-To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER.
 
 ## Older way of doing the same thing
 
