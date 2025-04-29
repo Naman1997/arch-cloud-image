@@ -39,7 +39,7 @@ To use the created template ID `9000`, create a clone using it and attempt to ss
 
 ![Creating a Full Clone](images/clone.png)
 
-You will be able to see the IP address of the VM once it boots up as long as you didn't remove the installation of qemu-guest-agent from the ansible playbook.
+You will be able to see the IP address of the VM once it boots up as long as you didn't remove the installation of `qemu-guest-agent` from the ansible playbook.
 
 ![A cloned node](images/node.png)
 
