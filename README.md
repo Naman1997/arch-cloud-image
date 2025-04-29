@@ -45,7 +45,7 @@ You will be able to see the IP address of the VM once it boots up as long as you
 
 Once the node is up and running, you can use the SSH key you provided to log in the node.
 
-![SSH Login](images/ssh.png)
+![SSH Login](images/login.png)
 
 ## Cleanup
 
