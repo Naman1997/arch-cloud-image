@@ -43,6 +43,10 @@ You will be able to see the IP address of the VM once it boots up as long as you
 
 ![A cloned node](images/node.png)
 
+Once the node is up and running, you can use the SSH key you provided to log in the node.
+
+![SSH Login](images/ssh.png)
+
 ## Cleanup
 
 The following command will delete the qcow2 file and reset the user-data file used to generate the template.
