@@ -14,10 +14,10 @@ To create a qcow2 template that is modified to contain certain programs. This is
 
 This repo uses the [playbook.yml](https://github.com/Naman1997/arch-cloud-image/blob/main/playbook.yml) file in the root directory to create the golden image. In case you want to install any additional tools or make any changes, make sure to modify that file. The playbook installs a list of packages that are present in the [pkglist.txt](https://github.com/Naman1997/arch-cloud-image/blob/version/http/pkglist.txt) file that you can modify as well.
 
-The following command will create a qcow2 image at 'output-archlinux/golden-arch.qcow2' and create a template with VM ID 9000.
+The following command will create a qcow2 image at `output-archlinux/golden-arch.qcow2` and create a template with ID `9000`.
 This command assumes that you'll be using the same public key to ssh into the proxmox node as well as the VMs created by the template to keep things simple. 
 
-WARNING: If a VM/Template has ID 9000, then these commands will destroy and replace it with the golden image template for proxmox.
+WARNING: If a VM/Template has ID `9000`, then these commands will destroy and replace it with the golden image template for proxmox.
 
 ```
 make -s template \
@@ -35,7 +35,7 @@ make -s template \
     PATH_TO_PUB_KEY=~/.ssh/id_rsa.pub
 ```
 
-To use the created template [ID 9000], create a clone using it and attempt to ssh into the VM using user as CLOUD_USER.
+To use the created template ID `9000`, create a clone using it and attempt to ssh into the VM using user as CLOUD_USER.
 
 ![Creating a Full Clone](images/clone.png)
 
