@@ -27,7 +27,7 @@ make -s template \
     PATH_TO_PUB_KEY=<your_path_to_pub_key>
 ```
 ```
-#Example
+#Example [Make sure you're able to ssh in the proxmox node using the key provided here]
 make -s template \
     CLOUD_USER=arch \
     PROXMOX_USERNAME=root \
