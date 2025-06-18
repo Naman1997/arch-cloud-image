@@ -2,7 +2,7 @@ packer {
   required_plugins {
     qemu = {
       source  = "github.com/hashicorp/qemu"
-      version = ">= 1.1.1"
+      version = ">= 1.1.2"
     }
     ansible = {
       source  = "github.com/hashicorp/ansible"
